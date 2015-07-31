@@ -2,7 +2,7 @@
 
 import UserModel from '../models/user-model';
 
-var Users = Backbone.Collection.extend({
+var Users = Backbone.Collection.extend ({
   model: Users
 });
 
