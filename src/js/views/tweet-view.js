@@ -5,5 +5,5 @@ import Usermodel fom '../models/user-model'
 
 var TweetsView = Backbone.View.entend({
   template = _.template(['#twitterfeed'].html()),
-  
-})
+
+});
