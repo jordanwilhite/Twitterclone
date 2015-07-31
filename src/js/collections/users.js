@@ -2,8 +2,9 @@
 
 import UserModel from '../models/user-model';
 
+<<<<<<< HEAD
 var Users = Backbone.Collection.extend ({
   model: Users
 });
 
-export default UsersCollection;
+export default Users;

@@ -8,8 +8,6 @@ var UserModel = Backbone.Model.extend({
   defaults: {
     name: '',
     email: '',
-    password: '',
-    passwordconfirm: '',
     username: ''
 
   }
