@@ -1,16 +1,32 @@
-'use strict';
+let UserModel = Backbone.Model.extend({
 
-import SigninView from '../views/signin-view';
-import SignupView from '../views/signup-view';
-import UserCollection from '../collections/users';
+  url: 'https://twitterfeeder.herokuapp.com/users',
 
-var UserModel = Backbone.Model.extend({
   defaults: {
-    name: '',
-    email: '',
-    username: ''
+    email: ''
+  },
+  login: function(credentials) {
+    $.ajax('https://twitterfeeder.herokuapp.com/users')
+      .done(this.loginSuccess.bind(this))
+      .fail(this.loginSuccess.bind(this));
+  },
 
+  loginSuccess: function(data) {
+    var data = {
+      email: ''
+    };
+
+    this.set({
+      email: data.email
+    });
+
+    this.trigger('login', {success: true, user: data});
+  },
+
+  loginFail: function(jqXHR, textStatus, errorThrown) {
+    this.trigger('login', {success: false, error: errorThrown});
   }
 });
 
-export default UserModel;
+
+export default new UserModel();
