@@ -1,8 +1,9 @@
 'use strict'
 
-import UserModel from '../models/user-model';
+import import Router from '../routers/router.js'
+import Usermodel fom '../models/user-model'
 
-var Tweetmodel = Backbone.Model.extend({
+var TweetsView = Backbone.View.entend({
+  template = _.template(['#twitterfeed'].html()),
+
 });
-
-export default TweetView;
