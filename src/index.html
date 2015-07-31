@@ -2,13 +2,42 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Twitterclone</title>
 
+    <title>Twitter</title>
+
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css" media="screen" charset="utf-8">
   </head>
   <body>
+    <header>
+      <nav id="nav-login">
+        <div class="nav-bar">
 
-    <h1>Twitterclone</h1>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <aside class="sidebar">
+        <div class="profile-card">
+          <h1>Test</h1>
+        </div>
+      </aside>
+
+      <section id="primary">
+        <div class="timeline">
+          <div class="tweet-box">
+            <form class="tweet-form">
+              <input type="text" placeholder="What's Happening?">
+            </form>
+          </div>
+          <div class="twitter-feed">
+
+          </div>
+        </div>
+      </section>
+    </main>
+
 
     <!-- Templates -->
     <script type="text/template" id="signup">
@@ -29,6 +58,65 @@
         Remember me
       </p>
       <a href="#">Forgot Password?</a>
+    </script>
+
+    <!-- Nav Bar For Feed -->
+    <script type="text/template" id="feed-nav">
+      <nav id="nav-feed">
+        <div class="nav-bar">
+          <ul class="left-bar">
+            <li class="home">
+              <a href="#">
+                <span class="fa fa-home icon"></span>
+                <span class="text">Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="fa fa-bell icon"></span>
+                <span class="text">Notifications</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="fa fa-envelope icon"></span>
+                <span class="text">Messages</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="logo">
+            <span class="fa fa-twitter"></span>
+          </div>
+
+          <div class="right-bar">
+
+            <div class="search">
+              <form class="search-form">
+                <input type="text" placeholder="Search Twitter">
+                <span class="nav-search">
+                  <button type="submit"  class="fa fa-search"></button>
+                </span>
+              </form>
+            </div>
+
+            <ul class="nav-right">
+              <li>
+                <a href="#">
+                  <img src="#" alt="ProfilePic" class="avatar"/>
+                </a>
+              </li>
+              <li>
+                <button type="button" class="new-tweet">
+                  <span></span>
+                  <span class="text">Tweet</span>
+                </button>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </nav>
     </script>
 
     <!-- Third Party Libraries -->
