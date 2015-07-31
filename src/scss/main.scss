@@ -38,6 +38,25 @@ body{
     .sidebar{
       @include span-columns(3 of 12);
       float: left;
+
+      .profile-card{
+        border: 1px solid #e1e8ed;
+        background: #FFF;
+        border-radius: 6px;
+        img{
+          border-radius: 7px;
+          height: 72px;
+          width: 72px;
+          border: 2px solid #fff;
+        }
+
+        a{
+
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      }
     }
 
     #primary{
@@ -65,4 +84,3 @@ body{
       }
     }
   }
-}
