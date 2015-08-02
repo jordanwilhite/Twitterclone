@@ -6,12 +6,13 @@ let UserModel = Backbone.Model.extend({
     email: ''
   },
   login: function(credentials) {
-    $.ajax('https://twitterfeeder.herokuapp.com/users')
+    $.ajax('https://twitterfeeder.herokuapp.com/users/sign_in')
       .done(this.loginSuccess.bind(this))
-      .fail(this.loginSuccess.bind(this));
+      .fail(this.loginFail.bind(this));
   },
 
   loginSuccess: function(data) {
+    console.log(data);
     var data = {
       email: ''
     };
