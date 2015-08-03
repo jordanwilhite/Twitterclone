@@ -16,13 +16,15 @@ var SigninView = Backbone.View.extend({
   },
 
   onSubmit: function() {
-    var $signinEmail = this.$('#user-email');
-    var $signinPassword = this.$('#user-password');
+    var email = this.$('.email-input').val();
+    var password = this.$('.password-input').val();
 
-    if ($signinEmail.val() && $signinPassword.val()) {
+    console.log(email, password);
+
+    if (email && password) {
       this.model.signin({
-        email: $signinEmail.val(),
-        password: $signinPassword.val()
+        email: email,
+        password: password
       });
     } else {
       alert('Error: Username and Password');
