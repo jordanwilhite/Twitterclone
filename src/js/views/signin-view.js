@@ -2,7 +2,7 @@
 
 import UserModel from '../models/user-model';
 import Router from '../routers/router';
-import Users from '../collections/users';
+import Users from '../collections/friends';
 
 var SigninView = Backbone.View.extend({
   template: _.template($('#signin').html()),

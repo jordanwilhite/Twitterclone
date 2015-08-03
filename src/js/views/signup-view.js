@@ -25,7 +25,6 @@ var SignupView = Backbone.View.extend({
     // set it's values on the object
     if (password === passwordConfirm) {
 
-
       // Save the user to the server via the api
       User.signup({
         email: email,

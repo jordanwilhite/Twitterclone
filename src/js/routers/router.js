@@ -1,7 +1,7 @@
 // import FeedView from '../views/feed-view';
 // import TweetView from '../views/tweet-view';
-import Users from '../collections/users.js';
-import UserView from '../views/user-view';
+import Friends from '../collections/friends.js';
+import UserView from '../views/friend-view';
 import SigninView from '../views/signin-view';
 import SignupView from '../views/signup-view';
 import UserModel from '../models/user-model';
@@ -15,11 +15,6 @@ var Router = Backbone.Router.extend({
     'users/listUsers': 'listUsers',
     'feed': 'feed',
     'feed/new': 'new'
-  },
-
-  home: function() {
-    $('#primary').html('Welcome to the Twitterz!<br/>' + '<a href="#users/signin">Sign in</a> ' + '<a href="#users/signup">Sign up</a> ' + '<a href="#users/listUsers">User List</a> ' + '<a href="#feed">My Feed</a> ' + '<a href="#feed/">New Tweet</a> ');
-
   },
 
   signin: function() {
@@ -38,13 +33,16 @@ var Router = Backbone.Router.extend({
     $('#primary').html(view.render().el);
   },
 
-  listUsers: function() {
-    var view = new UserView({
-      model: UserModel,
-      collection: Users
-    });
+  listFriends: function() {
+    var collection = new Friends
 
-    $('#primary').html(view.render().el);
+    var view = new FriendView({
+      collection: collection
+    })
+
+    collection.fetch({
+
+    });
   },
 
   feed: function() {
@@ -57,7 +55,7 @@ var Router = Backbone.Router.extend({
 
   new: function() {
     var view = new SigninView({
-    model: User
+    model: UserModel
   });
 
     $('#primary').html(view.render().el);
