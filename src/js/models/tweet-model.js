@@ -2,7 +2,7 @@
 
 import TweetsCollection from '../collections/tweets';
 
-var TweetsCollection = Backbone.Model.extend({
+let TweetsCollection = Backbone.Model.extend({
   defaults: {
     username: '',
     createdAt: '',

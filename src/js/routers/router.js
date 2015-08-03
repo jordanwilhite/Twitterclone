@@ -9,7 +9,7 @@ import UserModel from '../models/user-model';
 var Router = Backbone.Router.extend({
 
   routes: {
-    '': 'home',
+    '': 'signup',
     'users/signin': 'signin',
     'users/signup': 'signup',
     'users/listUsers': 'listUsers',
@@ -44,8 +44,6 @@ var Router = Backbone.Router.extend({
       collection: Users
     });
 
-    collection.fetch() => success
-
     $('#primary').html(view.render().el);
   },
 
@@ -62,7 +60,7 @@ var Router = Backbone.Router.extend({
     model: User
   });
 
-    $('#primary').html('new tweet');
+    $('#primary').html(view.render().el);
   }
 
 });
