@@ -1,6 +1,6 @@
 'use strict'
 
-import TweetModel form '../models/tweet-model';
+import TweetModel from '../models/tweet-model';
 
 var TweetsCollection Backbone.Collection.extend;({
   url: 'https://twitterfeeder.herokuapp.com/tweets',

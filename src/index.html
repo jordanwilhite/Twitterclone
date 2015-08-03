@@ -20,11 +20,7 @@
 
     <main>
       <aside class="sidebar">
-        <div class="profile-card">
-          <img src="http://lorempixel.com/72/72/cats/" alt="Profile Picture"/>
-          <a href="#"><h1>Name</h1></a>
-          <a href="#"><h2>@username</h2></a>
-        </div>
+
       </aside>
 
       <section id="primary">
@@ -36,17 +32,6 @@
           </div>
           <div class="twitter-feed">
             <!-- Feed View Loads Here -->
-            <div class="tweet">
-              <img src="http://lorempixel.com/48/48/cats/" alt="Avatar" />
-              <ul>
-                <li><h4>Name</h4></li>
-                <li><p>Username</p></li>
-                <li><span>Time</span></li>
-              </ul>
-              <p>
-                tweet tweettweettweettweettweettweettweet
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -54,24 +39,37 @@
 
 
     <!-- Templates -->
+
+    <!-- Sign Up View -->
     <script type="text/template" id="signup">
-      <input type="text" id="name" placeholder="Full Name">
-      <input type="email" id="email" placeholder="Email">
-      <input type="password" id="password" placeholder="Password">
-      <input type="password" id="password-confirm" placeholder="Confirm Your Password">
-      <input type="text" id="username" placeholder="Username">
-      <button type="button" id="register">Sign up</button>
+      <div class="sign-up">
+        <h1>Join Today</h1>
+        <form>
+          <input type="text" id="name" placeholder="Full Name">
+          <input type="email" id="email" placeholder="Email">
+          <input type="password" id="password" placeholder="Password">
+          <input type="password" id="password-confirm" placeholder="Confirm Your Password">
+          <input type="text" id="username" placeholder="Username">
+          <button type="button" id="register">Sign up</button>
+        </form>
+      </div>
     </script>
 
+    <!-- Sign In View -->
     <script type="text/template" id="signin">
-      <input type="email" id="user-email" placeholder="Email">
-      <input type="password" id="user-password" placeholder="Password">
-      <button type="button" id="login">Log in</button>
-      <input type="checkbox" id="remember" value="">
-      <p>
-        Remember me
-      </p>
-      <a href="#">Forgot Password?</a>
+      <div class="sign-in">
+        <h1>Log In To Your Account</h1>
+        <input type="email" placeholder="Email">
+        <input type="password" placeholder="Password">
+        <div class="remember-forgot">
+          <label>
+            <input type="checkbox">
+            <span>Remember me</span>
+          </label>
+          <a href="#">Forgot Password?</a>
+        </div>
+        <button type="button">Log in</button>
+      </div>
     </script>
 
     <script type="text/template" id="users-list">
@@ -141,13 +139,6 @@
       </nav>
     </script>
 
-    <script type="text/template" id="twitterfeed">
-
-    </script>
-
-
-
-
     <!-- Login Nav -->
     <!-- <script type="text/template" id="login-nav">
       <nav id="nav-login">
@@ -158,7 +149,7 @@
     </script> -->
 
     <!-- Twitter Feed -->
-    <!-- <script type="text/template" id="feed-me">
+    <script type="text/template" id="feed-me">
       <div class="tweet">
         <img src="http://lorempixel.com/48/48/cats/" alt="Avatar" />
         <ul>
@@ -167,10 +158,19 @@
           <li><span>Time</span></li>
         </ul>
         <p>
-          tweet tweettweettweettweettweettweet
+          tweet tweettweettweettweettweettweettweet
         </p>
       </div>
-    </script> -->
+    </script>
+
+    <!-- Profile Card -->
+    <script type="text/template" id="user-card">
+      <div class="profile-card">
+        <img src="http://lorempixel.com/72/72/cats/" alt="Profile Picture"/>
+        <a href="#"><h1>Name</h1></a>
+        <a href="#"><h2>@username</h2></a>
+      </div>
+    </script>
 
     <!-- Third Party Libraries -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
