@@ -6,12 +6,13 @@ let UserModel = Backbone.Model.extend({
     email: '',
     username: '',
     name: '',
-    userId: ''
+    userId: '',
+    accessToken: ''
   },
 
   signin: function(credentials) {
     $.ajax({
-      method: "POST",
+      type: "POST",
       url: "https://twitterfeeder.herokuapp.com/oauth/token",
       dataType: "json",
       data: {
@@ -30,7 +31,7 @@ let UserModel = Backbone.Model.extend({
       email: data.email
     });
 
-    this.trigger('signin', {success: true, user: data,});
+    this.trigger('signin', {success: true, user: data,} );
   },
 
   signinFail: function(jqXHR, textStatus, errorThrown) {
@@ -42,18 +43,24 @@ let UserModel = Backbone.Model.extend({
       method: "POST",
       url: "https://twitterfeeder.herokuapp.com/users",
       dataType: "json",
-      data: credentials
+      data: {
+        user: {
+          email: credentials.email,
+          password: credentials.password
+        }
+      }
     }).done(this.signupSuccess.bind(this))
       .fail(this.signupFail.bind(this));
   },
 
-  signupSuccess: function(response){
-    console.log('signup success', response);
+  signupSuccess: function(response) {
+    this.login(this.get('credentials'));
   },
 
-  signupFail: function(xhr, textStatus, errorThrown){
-    console.log('signup fail', errorThrown);    
+  signupFail: function(xhr, textStatus, errorThrown) {
+    console.log('signup fail', {success: false}, errorThrown);
   }
+
 });
 
 export default new UserModel();

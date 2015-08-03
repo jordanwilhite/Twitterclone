@@ -2,7 +2,7 @@
 
 import Router from '../routers/router.js'
 import Usermodel from '../models/user-model';
-import Users frim '../collections/users';
+import Friends from '../collections/friends';
 
 let TweetsView = Backbone.View.entend({
   template = _.template($('#twitterfeed').html()),
@@ -18,7 +18,7 @@ let TweetsView = Backbone.View.entend({
       this.FeedView(tweet);
     }, this);
   }
-  
+
   render: function() {
     return this;
   }
