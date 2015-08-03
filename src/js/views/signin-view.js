@@ -2,8 +2,7 @@
 
 import UserModel from '../models/user-model';
 import Router from '../routers/router';
-
-// import Users from '../collections/users';
+import Users from '../collections/users';
 
 var SigninView = Backbone.View.extend({
   template: _.template($('#signin').html()),
@@ -21,7 +20,7 @@ var SigninView = Backbone.View.extend({
     var $signinPassword = this.$('#user-password');
 
     if ($signinEmail.val() && $signinPassword.val()) {
-      this.model.login({
+      this.model.signin({
         email: $signinEmail.val(),
         password: $signinPassword.val()
       });
@@ -30,7 +29,7 @@ var SigninView = Backbone.View.extend({
     }
   },
 
-  onLogin: function(data) {
+  onSignin: function(data) {
     if (data.success) {
       Router.navigate('feed', {trigger: true});
     } else {

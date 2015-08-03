@@ -1,6 +1,7 @@
 // import FeedView from '../views/feed-view';
 // import TweetView from '../views/tweet-view';
-// import UserView from '../views/user-view';
+import Users from '../collections/users.js';
+import UserView from '../views/user-view';
 import SigninView from '../views/signin-view';
 import SignupView from '../views/signup-view';
 import UserModel from '../models/user-model';
@@ -38,8 +39,9 @@ var Router = Backbone.Router.extend({
   },
 
   listUsers: function() {
-    var view = new UsersView({
-      model: UserModel
+    var view = new UserView({
+      model: UserModel,
+      collection: Users
     });
 
     $('#primary').html(view.render().el);
