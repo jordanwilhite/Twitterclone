@@ -24,11 +24,6 @@ body{
 
     nav{
       height: 46px;
-
-      .nav-bar{
-        @include outer-container;
-      }
-
       }
     }
   }
