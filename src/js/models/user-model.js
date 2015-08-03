@@ -3,7 +3,10 @@ let UserModel = Backbone.Model.extend({
   url: 'https://twitterfeeder.herokuapp.com/users',
 
   defaults: {
-    email: ''
+    email: '',
+    username: '',
+    name: '',
+    userId: ''
   },
 
   signin: function(credentials) {

@@ -1,11 +1,20 @@
 'use strict';
 
 import UserModel from '../models/user-model';
+import UserView from '../views/user-view';
 
 var Users = Backbone.Collection.extend ({
   url: 'https://twitterfeeder.herokuapp.com/users',
 
-  model: UserModel
+  model: UserModel,
+
+  parse: function(response) {
+    if(response.data) {
+      return response.data;
+    } else {
+      return response;
+    }
+  }
 
 });
 
