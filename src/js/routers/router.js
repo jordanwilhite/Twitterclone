@@ -13,7 +13,7 @@ var Router = Backbone.Router.extend({
     'users/signup': 'signup',
     'users/listUsers': 'listUsers',
     'feed': 'feed',
-    'feed/new': 'new',
+    'feed/new': 'new'
   },
 
   home: function() {
@@ -54,7 +54,7 @@ var Router = Backbone.Router.extend({
   },
 
   new: function() {
-  var view = new SigninView({
+    var view = new SigninView({
     model: User
   });
 

@@ -30,7 +30,7 @@ var SigninView = Backbone.View.extend({
     }
   },
 
-  onLogin: function(data){
+  onLogin: function(data) {
     if (data.success) {
       Router.navigate('feed', {trigger: true});
     } else {
@@ -40,8 +40,8 @@ var SigninView = Backbone.View.extend({
   },
 
   render: function() {
-  this.$el.html(this.template());
-  return this;
+    this.$el.html(this.template());
+    return this;
   }
 
 });

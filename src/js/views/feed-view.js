@@ -11,4 +11,4 @@ var FeedView = Backbone.View.extend({
   ].html('#inserthere')),
 })
 
-export default
+export default;
