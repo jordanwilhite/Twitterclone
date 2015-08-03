@@ -44,6 +44,8 @@ var Router = Backbone.Router.extend({
       collection: Users
     });
 
+    collection.fetch() => success
+
     $('#primary').html(view.render().el);
   },
 
