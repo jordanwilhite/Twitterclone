@@ -1,4 +1,4 @@
-``'use strict'
+'use strict'
 
 import UserModel from '../models/user-model';
 import Router from '../routers/router';

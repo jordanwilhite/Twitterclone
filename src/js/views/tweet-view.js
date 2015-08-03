@@ -1,8 +1,9 @@
 'use strict'
 
-import Router from '../routers/router.js'
+import Router from '../routers/router.js';
 import Usermodel from '../models/user-model';
-import Users frim '../collections/users';
+import TweetCollection '../models/tweet-model';
+import Users from '../collections/users';
 
 let TweetsView = Backbone.View.entend({
   template = _.template($('#twitterfeed').html()),
@@ -18,7 +19,7 @@ let TweetsView = Backbone.View.entend({
       this.FeedView(tweet);
     }, this);
   }
-  
+
   render: function() {
     return this;
   }
