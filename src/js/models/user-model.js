@@ -31,7 +31,7 @@ let UserModel = Backbone.Model.extend({
       email: data.email
     });
 
-    this.trigger('signin', {success: true, user: data,} );
+    this.trigger('signin', {success: true, user: data});
   },
 
   signinFail: function(jqXHR, textStatus, errorThrown) {
