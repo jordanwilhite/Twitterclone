@@ -1,7 +1,7 @@
-'use strict';
+'use-strict';
 
-import Router from '../routers/router.js'
 import UserModel from '../models/user-model';
+import Router from '../routers/router.js';
 
 var SignupView = Backbone.View.extend({
   template: _.template($('#signup').html()),
@@ -10,9 +10,6 @@ var SignupView = Backbone.View.extend({
     'click button': 'onSubmit'
   },
 
-  initialize: function() {
-    this.listenTo(this.model, 'signup', this.onSignup);
-  },
 
   onSubmit: function() {
     var $signinName = this.$('#name');
@@ -33,7 +30,7 @@ var SignupView = Backbone.View.extend({
 
       // Save the user to the server via the api
       user.save();
-      Router.navigate('feed', {trigger: true});
+      Router.navigate('users/listUsers', {trigger: true});
 
     } else {
       alert('Your passwords do not match. Try again.');
