@@ -7,8 +7,7 @@ import TweetsCollection from '';
 
 
 var FeedView = Backbone.View.extend({
-  template: _.template = _.template([
-  ].html('#inserthere')),
+  template: _.template($('#feedview').html()),
 })
 
-export default
+export default FeedView;
