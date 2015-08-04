@@ -1,3 +1,6 @@
+import FriendView from '../views/friend-view';
+import Friends from '../collections/friends';
+
 let FriendModel = Backbone.Model.extend({
 
   url: 'https://twitterfeeder.herokuapp.com/users',

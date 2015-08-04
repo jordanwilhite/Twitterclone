@@ -1,12 +1,13 @@
-// import FeedView from '../views/feed-view';
-// import TweetView from '../views/tweet-view';
+import FeedView from '../views/feed-view';
+import TweetView from '../views/tweet-view';
 import Friends from '../collections/friends.js';
-import UserView from '../views/friend-view';
+import FriendView from '../views/friend-view';
 import SigninView from '../views/signin-view';
 import SignupView from '../views/signup-view';
+import FriendModel from '../models/friend-model';
 import UserModel from '../models/user-model';
 
-var Router = Backbone.Router.extend({
+let Router = Backbone.Router.extend({
 
   routes: {
     '': 'signup',
@@ -34,14 +35,20 @@ var Router = Backbone.Router.extend({
   },
 
   listFriends: function() {
-    var collection = new Friends
-
+    var collection = new Friends();
     var view = new FriendView({
-      collection: collection
-    })
+      collection: collection,
+      model: FriendModel
+    });
 
     collection.fetch({
+      success: function() {
+        $('#primary').html(view.render().el);
+      },
 
+      error: function() {
+        alert('Error getting users.');
+      }
     });
   },
 

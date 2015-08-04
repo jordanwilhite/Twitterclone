@@ -1,5 +1,3 @@
-'use strict';
-
 import TweetsCollection from '../collections/tweets';
 
 let TweetModel = Backbone.Model.extend({
@@ -8,9 +6,9 @@ let TweetModel = Backbone.Model.extend({
     createdAt: '',
     postedAt: '',
     tweet: ''
-  }
+  },
 
-  parse : function(response) {
+  parse: function(response) {
     var data = {
       user: response.attributes.user_id,
       body: response.attributes.body,
@@ -20,4 +18,4 @@ let TweetModel = Backbone.Model.extend({
 })
 
 
-export default TweetsCollection;
+export default TweetModel;
