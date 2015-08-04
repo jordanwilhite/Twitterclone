@@ -6,26 +6,26 @@ let UserModel = Backbone.Model.extend({
     email: '',
     username: '',
     name: '',
-    userId: ''
+    userId: '',
+    accessToken: ''
   },
 
   signin: function(credentials) {
     $.ajax({
       type: "POST",
-      url: "https://twitterfeeder.herokuapp.com/users/oauth/token",
+      url: "https://twitterfeeder.herokuapp.com/oauth/token",
       dataType: "json",
-      success: function(data) {
-        _.done(this.signinSuccess.bind(this))
-        .fail(this.signinFail.bind(this));
+      data: {
+        mail: credentials.email,
+        password: credentials.password,
+        grant_type: 'password'
       }
-    })
+    }).done(this.signinSuccess.bind(this))
+      .fail(this.signinFail.bind(this));
   },
 
   signinSuccess: function(data) {
     console.log(data);
-    var data = {
-      email: ''
-    };
 
     this.set({
       email: data.email
@@ -36,10 +36,31 @@ let UserModel = Backbone.Model.extend({
 
   signinFail: function(jqXHR, textStatus, errorThrown) {
     console.log(jqXHR); console.log(textStatus); console.log(errorThrown);
+  },
+
+  signup: function(credentials) {
+    $.ajax({
+      method: "POST",
+      url: "https://twitterfeeder.herokuapp.com/users",
+      dataType: "json",
+      data: {
+        user: {
+          email: credentials.email,
+          password: credentials.password
+        }
+      }
+    }).done(this.signupSuccess.bind(this))
+      .fail(this.signupFail.bind(this));
+  },
+
+  signupSuccess: function(response) {
+    this.login(this.get('credentials'));
+  },
+
+  signupFail: function(xhr, textStatus, errorThrown) {
+    console.log('signup fail', {success: false}, errorThrown);
   }
-  // {
-  //   this.trigger('signin', {success: false, error: errorThrown});
-  // }
+
 });
 
 export default new UserModel();
