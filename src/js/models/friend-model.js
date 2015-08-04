@@ -7,9 +7,9 @@ let FriendModel = Backbone.Model.extend({
 
   listFriends: function(credentials) {
     $.ajax({
-      method: "GET",
-      url: "https://twitterfeeder.herokuapp.com/users",
-      dataType: "json",
+      method: 'GET',
+      url: 'https://twitterfeeder.herokuapp.com/users',
+      dataType: 'json',
       data: {
         user: {
           username: username.credentials,

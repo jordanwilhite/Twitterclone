@@ -12,9 +12,9 @@ let UserModel = Backbone.Model.extend({
 
   signin: function(credentials) {
     $.ajax({
-      type: "POST",
-      url: "https://twitterfeeder.herokuapp.com/oauth/token",
-      dataType: "json",
+      type: 'POST',
+      url: 'https://twitterfeeder.herokuapp.com/oauth/token',
+      dataType: 'json',
       data: {
         email: credentials.email,
         password: credentials.password,
@@ -31,7 +31,7 @@ let UserModel = Backbone.Model.extend({
       email: data.email
     });
 
-    this.trigger('signin', {success: true, user: data} );
+    this.trigger('signin', {success: true, user: data});
   },
 
   signinFail: function(jqXHR, textStatus, errorThrown) {
@@ -40,9 +40,9 @@ let UserModel = Backbone.Model.extend({
 
   signup: function(credentials) {
     $.ajax({
-      method: "POST",
-      url: "https://twitterfeeder.herokuapp.com/users",
-      dataType: "json",
+      method: 'POST',
+      url: 'https://twitterfeeder.herokuapp.com/users',
+      dataType: 'json',
       data: {
         user: {
           email: credentials.email,
