@@ -6,7 +6,6 @@ import TweetCollection '../models/tweet-model';
 import Users from '../collections/users';
 import Friends from '../collections/friends';
 
-
 let TweetsView = Backbone.View.entend({
   template = _.template($('#twitterfeed').html()),
 

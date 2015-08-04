@@ -5,6 +5,7 @@ import Router from '../routers/router.js';
 
 var SignupView = Backbone.View.extend({
   template: _.template($('#signup').html()),
+  className: "sign-up",
 
   events: {
     'click button': 'onSubmit'
