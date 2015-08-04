@@ -3,7 +3,6 @@ import Router from '../routers/router';
 
 let TweetModel = Backbone.Model.extend({
   defaults: {
-    username: '',
     createdAt: '',
     postedAt: '',
     tweet: ''
@@ -13,10 +12,37 @@ let TweetModel = Backbone.Model.extend({
     var data = {
       user: response.attributes.user_id,
       body: response.attributes.body,
-      id: response.id
+      id: response.id,
+      body: response.body,
+      tweetId: response.tweetId
     }
-  }
-})
+    tweet: function(tweets)
+    $ajax ({
+      type: "POST"
+      url: "https://twitterfeeder.herokuapp.com"
+      dataType: "json",
+      success: function(data){
+        _.done(this.postSuccess.bind(this))
+        .fail(this.postFail.bind(this));
+      })
+    }
+  };
 
+  postSuccess: function(data){
+    var data = {
+      createdAt: ''
+      postedAt: ''
+      body: ''
+      tweetId: ''
+    };
+
+    this.set({
+      createdAt: data.createdAt
+      postedAt: data.postedAt
+      body: data.body
+
+    });
+  }
+};
 
 export default TweetModel;

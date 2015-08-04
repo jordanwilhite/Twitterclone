@@ -3,6 +3,8 @@ import UserModel from '../models/user-model';
 import FriendModel from '../models/friend-model';
 import TweetsCollection from '../collections/tweets';
 import TweetModel from '../models/tweet-model';
+import Friends from '../collections/friends';
+
 
 let TweetView = Backbone.View.extend({
   template: _.template($('#feed-me').html()),
