@@ -16,7 +16,7 @@ let UserModel = Backbone.Model.extend({
       url: "https://twitterfeeder.herokuapp.com/oauth/token",
       dataType: "json",
       data: {
-        mail: credentials.email,
+        email: credentials.email,
         password: credentials.password,
         grant_type: 'password'
       }
@@ -31,7 +31,7 @@ let UserModel = Backbone.Model.extend({
       email: data.email
     });
 
-    this.trigger('signin', {success: true, user: data,} );
+    this.trigger('signin', {success: true, user: data} );
   },
 
   signinFail: function(jqXHR, textStatus, errorThrown) {
@@ -46,15 +46,18 @@ let UserModel = Backbone.Model.extend({
       data: {
         user: {
           email: credentials.email,
-          password: credentials.password
+          password: credentials.password,
+          passwordConfirm: credentials.passwordConfirm,
+          name: credentials.name,
+          username: credentials.username
         }
       }
     }).done(this.signupSuccess.bind(this))
       .fail(this.signupFail.bind(this));
   },
 
-  signupSuccess: function(response) {
-    this.login(this.get('credentials'));
+  signupSuccess: function(data) {
+    console.log('success!', data);
   },
 
   signupFail: function(xhr, textStatus, errorThrown) {
