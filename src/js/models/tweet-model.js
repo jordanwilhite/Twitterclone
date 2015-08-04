@@ -1,4 +1,5 @@
 import TweetsCollection from '../collections/tweets';
+import Router from '../routers/router';
 
 let TweetModel = Backbone.Model.extend({
   defaults: {

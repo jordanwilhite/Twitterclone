@@ -1,7 +1,7 @@
 import Router from '../routers/router.js'
 import UserModel from '../models/user-model';
 import FriendModel from '../models/friend-model';
-import TweetsCollection from '.../collections/tweets';
+import TweetsCollection from '../collections/tweets';
 import TweetModel from '../models/tweet-model';
 
 let TweetView = Backbone.View.extend({
@@ -10,7 +10,7 @@ let TweetView = Backbone.View.extend({
   tagName: 'ul',
 
   initialize: function(){
-    this.listenTo(this.collection, 'tweet', this.respose);
+    this.listenTo(this.collection, 'tweet', addAll);
   },
 
   addAll: function() {
