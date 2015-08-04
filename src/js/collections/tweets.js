@@ -1,10 +1,9 @@
-'use strict'
-
 import TweetModel from '../models/tweet-model';
-import TweetModel from '../views/tweet-view';
+import TweetView from '../views/tweet-view';
+import Router from '../routers/router';
 
 let TweetsCollection = Backbone.Collection.extend;({
-  url: 'https://twitterfeeder.herokuapp.com/tweets',
+  url: 'https://twitterfeeder.herokuapp.com/messages',
 
   model: TweetModel,
 
@@ -23,4 +22,4 @@ let TweetsCollection = Backbone.Collection.extend;({
   }
 });
 
-export default Tweets;
+export default TweetsCollection;

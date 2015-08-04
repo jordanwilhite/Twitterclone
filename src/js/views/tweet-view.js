@@ -1,30 +1,29 @@
-'use strict'
-
-import Router from '../routers/router.js';
-import Usermodel from '../models/user-model';
-import TweetCollection '../models/tweet-model';
-import Users from '../collections/users';
+import Router from '../routers/router.js'
+import UserModel from '../models/user-model';
+import FriendModel from '../models/friend-model';
+import TweetsCollection from '../collections/tweets';
+import TweetModel from '../models/tweet-model';
 import Friends from '../collections/friends';
 
-let TweetsView = Backbone.View.entend({
-  template = _.template($('#twitterfeed').html()),
 
-  tagName 'ul',
+let TweetView = Backbone.View.extend({
+  template: _.template($('#feed-me').html()),
+
+  tagName: 'ul',
 
   initialize: function(){
-    this.listenTo(this.collection 'TweetCollection', this.respose);
+    this.listenTo(this.collection, 'tweet', addAll);
   },
 
-  addAll: function:() {
+  addAll: function() {
     this.collection.each(function(tweet) {
-      this.FeedView(tweet);
+      this.TweetView(tweet);
     }, this);
-  }
+  },
 
   render: function() {
     return this;
   }
-}
 });
 
-export default UserView;
+export default TweetView;

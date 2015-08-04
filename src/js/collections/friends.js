@@ -1,7 +1,6 @@
-'use strict';
-
 import FriendModel from '../models/friend-model';
-import UserView from '../views/friend-view';
+import FriendView from '../views/friend-view';
+import Router from '../routers/router';
 
 let Friends = Backbone.Collection.extend ({
   url: 'https://twitterfeeder.herokuapp.com/users',
