@@ -6,6 +6,7 @@ import Users from '../collections/users';
 
 var SigninView = Backbone.View.extend({
   template: _.template($('#signin').html()),
+  className: "sign-in",
 
   events: {
     'click button': 'onSubmit'
