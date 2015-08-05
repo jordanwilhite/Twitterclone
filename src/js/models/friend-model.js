@@ -1,19 +1,23 @@
-import FriendView from '../views/friend-view';
-import Friends from '../collections/friends';
-
 let FriendModel = Backbone.Model.extend({
+  defaults: {
+    name: '',
+    username: ''
+  },
 
-  url: 'https://twitterfeeder.herokuapp.com/users',
+  parse: function(response) {
+    var data = response.attributes;
+    return data;
+  },
 
-  listFriends: function(credentials) {
+  listFriends: function(data) {
     $.ajax({
       method: 'GET',
       url: 'https://twitterfeeder.herokuapp.com/users',
       dataType: 'json',
       data: {
         user: {
-          username: username.credentials,
-          name: name.credentials
+          username: data.attributes.user_name,
+          name: data.attributes.name
         }
       }
     }).done(this.listUsersSuccess.bind(this))
@@ -21,7 +25,7 @@ let FriendModel = Backbone.Model.extend({
   },
 
   listFriendsSuccess: function(response) {
-    console.log('listUsers success', response);
+    console.log('success!', data);
   },
 
   listFriendsFail: function(xhr, textStatus, errorThrown) {
