@@ -40,7 +40,7 @@ var SignupView = Backbone.View.extend({
 
   },
 
-  onSignup: function() {
+  onSignup: function(data) {
     if (data.success) {
       Router.navigate('users/listUsers', {trigger: true});
     } else {

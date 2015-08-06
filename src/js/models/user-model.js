@@ -18,7 +18,7 @@ let UserModel = Backbone.Model.extend({
       data: {
         email: credentials.email,
         password: credentials.password,
-        grant_type: 'password'
+        grant_type: "password"
       }
     }).done(this.signinSuccess.bind(this))
       .fail(this.signinFail.bind(this));
@@ -35,7 +35,7 @@ let UserModel = Backbone.Model.extend({
   },
 
   signinFail: function(jqXHR, textStatus, errorThrown) {
-    console.log(jqXHR); console.log(textStatus); console.log(errorThrown);
+    console.log('signup fail', {success: false}, errorThrown);
   },
 
   signup: function(credentials) {
@@ -57,12 +57,20 @@ let UserModel = Backbone.Model.extend({
   },
 
   signupSuccess: function(data) {
-    console.log('success!', data);
+
+    this.set({
+      email: data.attributes.email,
+      name: data.attributes.full_name,
+      username: data.attributes.user_name,
+      password: data.attributes.password,
+    });
+
+    this.trigger('signup', {success: true, user: data});
   },
 
   signupFail: function(xhr, textStatus, errorThrown) {
     console.log('signup fail', {success: false}, errorThrown);
-  }
+  },
 
 });
 
