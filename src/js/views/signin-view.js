@@ -20,8 +20,6 @@ var SigninView = Backbone.View.extend({
     var email = this.$('.email-input').val();
     var password = this.$('.password-input').val();
 
-    console.log(email, password);
-
     if (email && password) {
       this.model.signin({
         email: email,

@@ -1,19 +1,22 @@
-'use strict'
-
-import UserModel from '../models/friend-model';
+import FriendModel from '../models/friend-model';
 import Router from '../routers/router';
-import Users from '../collections/friends';
+import Friends from '../collections/friends';
 
 let FriendView = Backbone.View.extend({
   template: _.template($('#users-list').html()),
 
   tagName: 'ul',
 
-  initialize: function() {
-    this.listenTo(this.collection, 'listUsers', this.addUser);
-  },
-
   render: function() {
+    this.$el.html(this.template());
+
+    this.collection.each((user) => {
+      var view = new FriendsView({
+        model: user
+      })
+      this.$('#users-list').append(view.render().el);
+    });
+
     return this;
   }
 });
