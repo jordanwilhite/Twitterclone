@@ -10,39 +10,40 @@ let TweetModel = Backbone.Model.extend({
 
   parse: function(response) {
     var data = {
-      user: response.attributes.user_id,
+      user: response.user_id,
       body: response.attributes.body,
       id: response.id,
-      body: response.body,
+      body: response.attributes.body,
       tweetId: response.tweetId
     }
-    tweet: function(tweets)
+  },
+
+  tweet: function(tweets) {
     $ajax ({
-      type: "POST"
-      url: "https://twitterfeeder.herokuapp.com"
+      type: "POST",
+      url: "https://twitterfeeder.herokuapp.com",
       dataType: "json",
       success: function(data){
         _.done(this.postSuccess.bind(this))
         .fail(this.postFail.bind(this));
-      })
-    }
-  };
+      }
+    });
+  },
 
   postSuccess: function(data){
     var data = {
-      createdAt: ''
-      postedAt: ''
-      body: ''
+      createdAt: '',
+      postedAt: '',
+      body: '',
       tweetId: ''
     };
 
     this.set({
-      createdAt: data.createdAt
-      postedAt: data.postedAt
+      createdAt: data.createdAt,
+      postedAt: data.postedAt,
       body: data.body
-
     });
   }
-};
+});
 
-export default TweetModel;
+  export default TweetModel;

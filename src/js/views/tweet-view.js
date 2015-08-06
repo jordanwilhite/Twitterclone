@@ -13,7 +13,7 @@ let TweetView = Backbone.View.extend({
   tagName: 'ul',
 
   initialize: function(){
-    this.listenTo(this.collection, 'tweet', addAll);
+    this.listenTo(this.collection, 'tweet', this.addAll);
   },
 
   addAll: function() {
