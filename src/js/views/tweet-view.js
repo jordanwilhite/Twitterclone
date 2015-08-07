@@ -1,19 +1,20 @@
 import Router from '../routers/router.js'
-import UserModel from '../models/user-model';
-import FriendModel from '../models/friend-model';
 import TweetsCollection from '../collections/tweets';
 import TweetModel from '../models/tweet-model';
-import Friends from '../collections/friends';
+
+let html = `
+  <h2>Create a Twitterz</h2>
+`;
 
 
 let TweetView = Backbone.View.extend({
-  template: _.template($('#feed-me').html()),
+  template: _.template(html),
   className: 'tweet',
 
   tagName: 'ul',
 
   initialize: function(){
-    this.listenTo(this.collection, 'tweet', this.addAll);
+    this.listenTo(this.collection, 'add', this.addAll);
   },
 
   addAll: function() {

@@ -1,17 +1,15 @@
-'use strict'
-
 import UserModel from '../models/user-model';
 import Router from '../routers/router';
 import TweetView from '../views/tweet-view';
 import TweetsCollection from '../collections/tweets';
 
 let FeedView = Backbone.View.extend({
-template: _.template($('#feedview').html()),
+template: _.template($('#feed-me').html()),
 
 tagName: 'ul',
 
 initialize: function() {
-  this.listenTo(this.collection, 'TweetsCollection', this.addTweets);
+  this.listenTo(this.collection, 'add', this.addTweets);
 
 },
 
