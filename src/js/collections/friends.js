@@ -1,3 +1,4 @@
+import BaseCollection from './base';
 import FriendModel from '../models/friend-model';
 
 let Friends = Backbone.Collection.extend({

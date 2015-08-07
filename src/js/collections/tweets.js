@@ -1,6 +1,5 @@
 import TweetModel from '../models/tweet-model';
-import TweetView from '../views/tweet-view';
-import Router from '../routers/router';
+import BaseCollection from './base';  
 
 let TweetsCollection = Backbone.Collection.extend({
   url: 'https://twitterfeeder.herokuapp.com/messages',

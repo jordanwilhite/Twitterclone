@@ -1,8 +1,4 @@
-'use strict';
-
-import UserModel from '../models/user-model';
 import Router from '../routers/router';
-import Users from '../collections/friends';
 
 let SigninView = Backbone.View.extend({
   template: _.template($('#signin').html()),
@@ -12,11 +8,12 @@ let SigninView = Backbone.View.extend({
     'click button': 'onSubmit'
   },
 
-  initialize: function() {
-    this.listenTo(this.model, 'signin', this.onSignin);
+  render: function() {
+    this.$el.html(this.template(this.model.toJSON()));
+    return this;
   },
 
-  onSubmit: function() {
+  onSubmit: function(e) {
     var email = this.$('.email-input').val();
     var password = this.$('.password-input').val();
 
@@ -28,20 +25,7 @@ let SigninView = Backbone.View.extend({
     } else {
       alert('Error: Username and Password');
     }
-  },
-
-  onSignin: function(data) {
-    if (data.success) {
-      Router.navigate('feed', {trigger: true});
-    } else {
-      console.log(data);
-      alert('There was a problem logging you in. Please try again.' + data.error);
-    }
-  },
-
-  render: function() {
-    this.$el.html(this.template());
-    return this;
+    e.preventDefault();
   }
 
 });

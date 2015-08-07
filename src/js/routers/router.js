@@ -1,12 +1,15 @@
-import TweetsCollection from '../collections/tweets';
+// Models
+import UserModel from '../models/user-model';
+
+// Views
 import TweetView from '../views/tweet-view';
-import Friends from '../collections/friends.js';
 import FriendView from '../views/friend-view';
 import SigninView from '../views/signin-view';
 import SignupView from '../views/signup-view';
-import TweetModel from '../models/tweet-model';
-import FriendModel from '../models/friend-model';
-import UserModel from '../models/user-model';
+
+// Collections
+import TweetsCollection from '../collections/tweets';
+import Friends from '../collections/friends.js';
 
 let Router = Backbone.Router.extend({
 
@@ -19,7 +22,23 @@ let Router = Backbone.Router.extend({
     'feed/new': 'new'
   },
 
+  initialize: function() {
+    this.listenTo(UserModel, 'signin', (data) => {
+      if (data.success) {
+        this.navigate('feed', {trigger: true});
+      }
+    });
+  },
+
   signin: function() {
+    if (UserModel.isLoggedIn()) {
+      this.navigate('feed', {
+        trigger: true,
+        replace: true
+      });
+      return false;
+    }
+
     var view = new SigninView({
       model: UserModel
     });

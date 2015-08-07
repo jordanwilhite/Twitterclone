@@ -1,12 +1,9 @@
-import FriendModel from '../models/friend-model';
-import Router from '../routers/router';
-import Friends from '../collections/friends';
 import ProfileView from './profile-view';
 
 let FriendView = Backbone.View.extend({
   template: _.template(`<h1>Friends</h1>`),
 
-  tagName: 'ul',
+  className: 'user-list',
 
   render: function() {
     this.$el.html(this.template());
@@ -15,7 +12,7 @@ let FriendView = Backbone.View.extend({
       var view = new ProfileView({
         model: friend
       })
-  
+
       this.$el.append(view.render().el);
     });
 

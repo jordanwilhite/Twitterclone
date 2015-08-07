@@ -1,3 +1,5 @@
+import BaseModel from './base-model';
+
 let UserModel = Backbone.Model.extend({
 
   url: 'https://twitterfeeder.herokuapp.com/users',
@@ -6,36 +8,84 @@ let UserModel = Backbone.Model.extend({
     email: '',
     username: '',
     name: '',
-    userId: '',
-    accessToken: ''
+    accessToken: null,
+    user: 0,
+    tokenType: null,
+    expiresIn: 0,
+    refreshToken: null,
+  },
+
+  initialize() {
+    this.fetch({
+      success(model) {
+        if(model.isLoggedIn()) {
+          model._loginSuccess();
+        }
+      }
+    })
+  },
+
+  refreshAuth() {
+    _.delay(() => {
+      alert('token expired...time to fetch a new one');
+    }, this.get('expiresIn') * 1000);
+  },
+
+  isLoggedIn() {
+    return !!this.get('accessToken');
   },
 
   signin: function(credentials) {
-    $.ajax({
-      type: 'POST',
-      url: 'https://twitterfeeder.herokuapp.com/oauth/token',
-      dataType: 'json',
-      data: {
-        email: credentials.email,
-        password: credentials.password,
-        grant_type: "password"
-      }
-    }).done(this.signinSuccess.bind(this))
-      .fail(this.signinFail.bind(this));
+    if (this.get('credentials')) {
+      this.set('credentials', {});
+    }
+
+    if (credentials) {
+      this.set({
+        email: credentials.email
+      });
+      $.ajax({
+        method: 'POST',
+        url: 'https://twitterfeeder.herokuapp.com/oauth/token',
+        dataType: 'json',
+        data: {
+          email: credentials.email,
+          password: credentials.password,
+          grant_type: "password"
+        }
+      }).done(this.signinSuccess.bind(this))
+        .fail(this.signinFail.bind(this));
+    }
   },
 
-  signinSuccess: function(data) {
-    console.log(data);
-
+  signinSuccess: function(response) {
+    if (response) {
     this.set({
-      email: data.email
+      accessToken: response.access_token,
+      refreshToken: response.refresh_token,
+      tokenType: response.token_type,
+      expiresIn: response.expires_in
     });
 
-    this.trigger('signin', {success: true, user: data});
+    this.save();
+    }
+
+    this.refreshAuth();
+
+    this.trigger('signin', {
+      success: true,
+      user: data
+    });
   },
 
-  signinFail: function(jqXHR, textStatus, errorThrown) {
-    console.log('signup fail', {success: false}, errorThrown);
+  signinFail: function(xhr, textStatus, errorThrown) {
+    alert('There was an error logging you in.\nError:' + errorThrown);
+
+    this.trigger('login', {
+      success: false,
+      error: errorThrown,
+      user: this
+    });
   },
 
   signup: function(credentials) {
@@ -47,9 +97,8 @@ let UserModel = Backbone.Model.extend({
         user: {
           email: credentials.email,
           password: credentials.password,
-          passwordConfirm: credentials.passwordConfirm,
-          name: credentials.name,
-          username: credentials.username
+          name: credentials.full_name,
+          username: credentials.user_name
         }
       }
     }).done(this.signupSuccess.bind(this))
@@ -57,19 +106,12 @@ let UserModel = Backbone.Model.extend({
   },
 
   signupSuccess: function(data) {
-
-    this.set({
-      email: data.attributes.email,
-      name: data.attributes.full_name,
-      username: data.attributes.user_name,
-      password: data.attributes.password,
-    });
-
-    this.trigger('signup', {success: true, user: data});
+    this.trigger('signup', {success: true, user: this});
+    this.signin(this.get('credentials'));
   },
 
   signupFail: function(xhr, textStatus, errorThrown) {
-    console.log('signup fail', {success: false}, errorThrown);
+    this.trigger('signup', {success: false, error: errorThrown})
   },
 
 });
