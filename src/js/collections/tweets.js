@@ -1,5 +1,5 @@
 import TweetModel from '../models/tweet-model';
-import BaseCollection from './base';  
+import BaseCollection from './base';
 
 let TweetsCollection = Backbone.Collection.extend({
   url: 'https://twitterfeeder.herokuapp.com/messages',
@@ -7,7 +7,7 @@ let TweetsCollection = Backbone.Collection.extend({
   model: TweetModel,
 
   parse: function(response) {
-    if(response.data) {
+    if (response.data) {
       return response.data;
     } else {
       return response;

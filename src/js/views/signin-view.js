@@ -2,7 +2,7 @@ import Router from '../routers/router';
 
 let SigninView = Backbone.View.extend({
   template: _.template($('#signin').html()),
-  className: "sign-in",
+  className: 'sign-in',
 
   events: {
     'click button': 'onSubmit'
@@ -25,6 +25,7 @@ let SigninView = Backbone.View.extend({
     } else {
       alert('Error: Username and Password');
     }
+
     e.preventDefault();
   }
 

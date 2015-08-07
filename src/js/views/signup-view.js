@@ -2,7 +2,7 @@ import Router from '../routers/router.js';
 
 let SignupView = Backbone.View.extend({
   template: _.template($('#signup').html()),
-  className: "sign-up",
+  className: 'sign-up',
 
   events: {
     'click button': 'onSubmit'
@@ -30,6 +30,7 @@ let SignupView = Backbone.View.extend({
     } else {
       alert('Your passwords do not match. Try again.');
     }
+
     e.preventDefault();
   },
 
