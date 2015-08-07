@@ -1,6 +1,8 @@
+import BaseModel from './base-model';
+
 let FriendModel = Backbone.Model.extend({
   defaults: {
-    name: '',
+    fullname: '',
     username: ''
   },
 
@@ -17,7 +19,7 @@ let FriendModel = Backbone.Model.extend({
       data: {
         user: {
           username: data.attributes.user_name,
-          name: data.attributes.name
+          fullname: data.attributes.full_name
         }
       }
     }).done(this.listUsersSuccess.bind(this))

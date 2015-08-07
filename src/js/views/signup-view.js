@@ -1,9 +1,6 @@
-'use-strict';
-
-import User from '../models/user-model';
 import Router from '../routers/router.js';
 
-var SignupView = Backbone.View.extend({
+let SignupView = Backbone.View.extend({
   template: _.template($('#signup').html()),
   className: "sign-up",
 
@@ -11,23 +8,19 @@ var SignupView = Backbone.View.extend({
     'click button': 'onSubmit'
   },
 
-  initialize: function() {
-    this.listenTo(this.model, 'signup', this.onSignup);
-  },
-
-  onSubmit: function() {
-    var name = this.$('#name').val();
-    var email = this.$('#email').val();
-    var password = this.$('#password').val();
-    var passwordConfirm = this.$('#password-confirm').val();
-    var username = this.$('#username').val();
+  onSubmit: function(e) {
+    let name = this.$('#name').val();
+    let email = this.$('#email').val();
+    let password = this.$('#password').val();
+    let passwordConfirm = this.$('#password-confirm').val();
+    let username = this.$('#username').val();
 
     // if the passwords match create a new instance of User &
     // set it's values on the object
-    if (password === passwordConfirm) {
+    if (email && password && passwordConfirm && (password === passwordConfirm)) {
 
       // Save the user to the server via the api
-      User.signup({
+      this.model.signup({
         email: email,
         password: password,
         username: username,
@@ -37,20 +30,11 @@ var SignupView = Backbone.View.extend({
     } else {
       alert('Your passwords do not match. Try again.');
     }
-
-  },
-
-  onSignup: function(data) {
-    if (data.success) {
-      Router.navigate('users/listUsers', {trigger: true});
-    } else {
-      console.log(data);
-      alert('There was a problem with your registration. Please try again.' + data.error);
-    }
+    e.preventDefault();
   },
 
   render: function() {
-    this.$el.html(this.template());
+    this.$el.html(this.template(this.model.toJSON()));
     return this;
   }
 });
