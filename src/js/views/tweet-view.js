@@ -8,6 +8,7 @@ import Friends from '../collections/friends';
 
 let TweetView = Backbone.View.extend({
   template: _.template($('#feed-me').html()),
+  className: 'tweet',
 
   tagName: 'ul',
 

@@ -62,7 +62,7 @@ let Router = Backbone.Router.extend({
 
     collection.fetch({
       success: function() {
-        $('#primary').html(view.render().el);
+        $('.twitter-feed').html(view.render().el);
       },
 
       error: function() {
