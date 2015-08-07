@@ -3,7 +3,7 @@
 import User from '../models/user-model';
 import Router from '../routers/router.js';
 
-var SignupView = Backbone.View.extend({
+let SignupView = Backbone.View.extend({
   template: _.template($('#signup').html()),
   className: "sign-up",
 
