@@ -6,7 +6,7 @@ import TweetView from '../views/tweet-view';
 import TweetsCollection from '../collections/tweets';
 
 let FeedView = Backbone.View.extend({
-template: _.template($('#feedview').html()),
+template: _.template($('#feed-me').html()),
 
 tagName: 'ul',
 
