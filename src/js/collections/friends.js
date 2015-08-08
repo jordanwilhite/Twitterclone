@@ -1,16 +1,15 @@
+import BaseCollection from './base';
 import FriendModel from '../models/friend-model';
 
-let Friends = Backbone.Collection.extend({
+let Friends = BaseCollection.extend({
+  model: FriendModel,
   url: 'https://twitterfeeder.herokuapp.com/users',
 
-  model: FriendModel,
-
-  parse: function(response) {
+  parse(response) {
     if (response.data) {
       return response.data;
-    } else {
-      return response;
     }
+    return response;
   }
 });
 

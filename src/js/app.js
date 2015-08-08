@@ -1,5 +1,5 @@
-'use strict';
+import AppView from './views/app';
+import Router from './routers/router';
 
-import Router from './routers/router.js';
-
+$('.app').html(AppView.render().el);
 Backbone.history.start();

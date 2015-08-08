@@ -18,6 +18,11 @@ body{
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   background-color: #f5f8fa;
 
+  .app-container{
+    @include outer-container(100%);
+
+  }
+
   header{
     border-bottom: 1px solid rgba(0,0,0,0.15);
     @import "partials/nav";
@@ -26,125 +31,135 @@ body{
       height: 46px;
       }
     }
-  }
-
-  main{
-    @include outer-container;
-    padding: 10px 0 0 0;
 
     .sidebar{
-      @include span-columns(3 of 12);
+      @include span-columns(3.5);
       float: left;
 
-      .profile-card{
-        border: 1px solid #e1e8ed;
-        background: #FFF;
-        border-radius: 6px;
-        text-align: center;
+      .tweet-box{
+        background-color: #E5F2F7;
+        padding: 10px 12px;
+        border: 1px solid #BFE0EC;
+        border-radius: 3px 3px 0 0;
+        margin: 10px 0 0 15px;
 
-        img{
-          border-radius: 7px;
-          height: 72px;
-          width: 72px;
-          border: 2px solid #fff;
-          display: block;
-          margin-left: auto;
-          margin-right: auto
-        }
+        .tweet-form{
 
-        a{
-
-          &:hover{
-            text-decoration: underline;
+          input{
+            font-size: 14px;
+            width: 100%;
+            padding: 8px 10px;
           }
-        }
 
-        h1{
-          font-weight: 700;
-          font-size: 18px;
-          color: #000;
-        }
-
-        h2{
-          color: #66757f;
-          font-size: 12px;
-          font-weight: normal;
+          button{
+            padding: 0 13px 0 14px;
+            color: #fff;
+            height: 32px;
+            background: rgba(0,132,180,.8);
+            font-size: 13px;
+            font-weight: 500;
+            border: none;
+            margin: 10px auto 0 auto;
+            display: block;
+          }
         }
       }
     }
 
-    #primary{
-      @include span-columns(6 of 12);
+    .content{
+      @include span-columns(8);
       @import "partials/login";
       @import "partials/signup";
+      padding: 10px 0 0 0;
 
-      .timeline{
+      .tweets{
 
-        .tweet-box{
-          background-color: #E5F2F7;
-          padding: 10px 12px;
-          border-top: 1px solid #BFE0EC;
-          border-right: 1px solid #BFE0EC;
-          border-left: 1px solid #BFE0EC;
-          border-radius: 3px 3px 0 0;
+        .tweet{
+          border: 1px solid #e1e8ed;
+          padding: 9px 12px;
+          cursor: pointer;
+          width: 60%;
+          margin: 0 60px;
 
-          .tweet-form{
-
-            input{
-              font-size: 14px;
-              width: 100%;
-              padding: 8px 10px;
-            }
+          &:hover{
+            background-color: #f5f8fa;
           }
-        }
 
-        .twitter-feed{
+          img{
+            width: 48px;
+            height: 48px;
+            border-radius: 5px;
+            float: left;
+            margin: 0 10px 0 0;
+          }
 
-          .tweet{
-            border: 1px solid #e1e8ed;
-            padding: 9px 12px;
-            cursor: pointer;
+          ul{
+            margin: 0;
+            padding: 0;
 
-            &:hover{
-              background-color: #f5f8fa;
-            }
+            li{
+              display: inline-block;
 
-            img{
-              width: 48px;
-              height: 48px;
-              border-radius: 5px;
-              float: left;
-              margin: 0 10px 0 0;
-            }
+              h4{
+                font-weight: bold;
+                color: #292f33;
+                font-size: 14px;
+                margin: 0
+              }
 
-            ul{
-              margin: 0;
-              padding: 0;
-
-              li{
-                display: inline-block;
-
-                h4{
-                  font-weight: bold;
-                  color: #292f33;
-                  font-size: 14px;
-                  margin: 0
-                }
-
-                p, span{
-                  font-size: 13px;
-                  color: #8899a6;
-                  margin: 0;
-                }
+              p, span{
+                font-size: 13px;
+                color: #8899a6;
+                margin: 0;
               }
             }
+          }
 
-            p{
-              font-size: 14px;
-              margin: 0 0 30px 0;
-            }
+          p{
+            font-size: 14px;
+            margin: 0 0 30px 0;
           }
         }
-      }
     }
   }
+}
+    // .sidebar{
+    //   @include span-columns(3);
+    //   float: left;
+    //
+    //   .profile-card{
+    //     border: 1px solid #e1e8ed;
+    //     background: #FFF;
+    //     border-radius: 6px;
+    //     text-align: center;
+    //
+    //     img{
+    //       border-radius: 7px;
+    //       height: 72px;
+    //       width: 72px;
+    //       border: 2px solid #fff;
+    //       display: block;
+    //       margin-left: auto;
+    //       margin-right: auto
+    //     }
+    //
+    //     a{
+    //
+    //       &:hover{
+    //         text-decoration: underline;
+    //       }
+    //     }
+    //
+    //     h1{
+    //       font-weight: 700;
+    //       font-size: 18px;
+    //       color: #000;
+    //     }
+    //
+    //     h2{
+    //       color: #66757f;
+    //       font-size: 12px;
+    //       font-weight: normal;
+    //     }
+    //   }
+    // }

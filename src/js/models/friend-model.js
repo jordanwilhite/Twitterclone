@@ -1,37 +1,22 @@
-let FriendModel = Backbone.Model.extend({
+import BaseModel from './base';
+
+let FriendModel = BaseModel.extend({
   defaults: {
-    name: '',
+    fullname: '',
     username: ''
   },
 
-  parse: function(response) {
-    var data = response.attributes;
-    return data;
+  parse(response) {
+    return response.attributes;
   },
 
-  listFriends: function(data) {
-    $.ajax({
-      method: 'GET',
-      url: 'https://twitterfeeder.herokuapp.com/users',
-      dataType: 'json',
-      data: {
-        user: {
-          username: data.attributes.user_name,
-          name: data.attributes.name
-        }
-      }
-    }).done(this.listUsersSuccess.bind(this))
-    .fail(this.listUsersFail.bind(this));
+  follow() {
+
   },
 
-  listFriendsSuccess: function(response) {
-    console.log('success!', data);
-  },
+  unfollow() {
 
-  listFriendsFail: function(xhr, textStatus, errorThrown) {
-    console.log('listUsers fail', errorThrown);
   }
-
 });
 
 export default FriendModel;
