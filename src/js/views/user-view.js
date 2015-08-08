@@ -2,7 +2,7 @@
 
 import UserModel from '../models/user-model';
 import Router from '../routers/router';
-import Users from '../collections/users';
+import Users from '../collections/friends';
 
 let UserView = Backbone.View.extend({
   template: _.template($('#users-list').html()),

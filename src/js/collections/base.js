@@ -4,7 +4,7 @@ let BaseCollection = Backbone.Collection.extend({
   sync(method, model, options) {
     if (UserModel.isLoggedIn()) {
       options.headers = {
-        'Authorization': 'Bearer ' + User.get('accessToken')
+        Authorization: 'Bearer ' + User.get('accessToken')
       };
     }
 

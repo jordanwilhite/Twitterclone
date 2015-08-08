@@ -12,13 +12,13 @@ let UserModel = Backbone.Model.extend({
     user: 0,
     tokenType: null,
     expiresIn: 0,
-    refreshToken: null,
+    refreshToken: null
   },
 
   initialize() {
     this.fetch({
       success(model) {
-        if(model.isLoggedIn()) {
+        if (model.isLoggedIn()) {
           model._loginSuccess();
         }
       }
@@ -51,7 +51,7 @@ let UserModel = Backbone.Model.extend({
         data: {
           email: credentials.email,
           password: credentials.password,
-          grant_type: "password"
+          grant_type: 'password'
         }
       }).done(this.signinSuccess.bind(this))
         .fail(this.signinFail.bind(this));
@@ -60,14 +60,14 @@ let UserModel = Backbone.Model.extend({
 
   signinSuccess: function(response) {
     if (response) {
-    this.set({
+      this.set({
       accessToken: response.access_token,
       refreshToken: response.refresh_token,
       tokenType: response.token_type,
       expiresIn: response.expires_in
     });
 
-    this.save();
+      this.save();
     }
 
     this.refreshAuth();
@@ -112,7 +112,7 @@ let UserModel = Backbone.Model.extend({
 
   signupFail: function(xhr, textStatus, errorThrown) {
     this.trigger('signup', {success: false, error: errorThrown})
-  },
+  }
 
 });
 
