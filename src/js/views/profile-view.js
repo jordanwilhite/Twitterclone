@@ -1,7 +1,6 @@
 import UserModel from '../models/user-model';
 
 let html = `
-
   <h2>
   <% if(name) { %>
     <%- name %>
@@ -10,7 +9,7 @@ let html = `
   <% } %>
   </h2>
 
-  <p><%- user_name %></p>
+  <p><%- username %></p>
   <button type="button">Follow</button>
 `;
 let ProfileView = Backbone.View.extend({

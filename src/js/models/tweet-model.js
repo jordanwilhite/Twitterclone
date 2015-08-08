@@ -4,7 +4,7 @@ let TweetModel = Backbone.Model.extend({
   defaults: {
     createdAt: '',
     postedAt: '',
-    tweet: ''
+    body: ''
   },
 
   parse: function(response) {
@@ -12,7 +12,6 @@ let TweetModel = Backbone.Model.extend({
       user: response.user_id,
       body: response.attributes.body,
       id: response.id,
-      body: response.attributes.body,
       tweetId: response.tweetId
     }
   },
@@ -20,7 +19,7 @@ let TweetModel = Backbone.Model.extend({
   tweet: function(tweets) {
     $ajax ({
       type: 'POST',
-      url: 'https://twitterfeeder.herokuapp.com',
+      url: 'https://twitterfeeder.herokuapp.com/messages',
       dataType: 'json',
       success: function(data) {
         _.done(this.postSuccess.bind(this))

@@ -8,13 +8,12 @@ let FriendView = Backbone.View.extend({
   render: function() {
     this.$el.html(this.template());
 
-    this.collection.each((friend) => {
+    this.collection.each(function(friend) {
       var view = new ProfileView({
         model: friend
       })
-
       this.$el.append(view.render().el);
-    });
+    }, this);
 
     return this;
   }
