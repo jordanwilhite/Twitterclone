@@ -1,6 +1,3 @@
-
-// 'use strict'
-//
 // import UserModel from '../models/user-model';
 // import Router from '../routers/router';
 // import TweetView from '../views/tweet-view';

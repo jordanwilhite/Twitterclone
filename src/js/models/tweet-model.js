@@ -9,7 +9,11 @@ let TweetModel = Backbone.Model.extend({
 
   parse: function(response) {
     var data = {
+
+      //jscs:disable requireCamelCaseOrUpperCaseIdentifiers
       user: response.user_id,
+
+      //jscs:enable requireCamelCaseOrUpperCaseIdentifiers
       body: response.attributes.body,
       id: response.id,
       tweetId: response.tweetId
