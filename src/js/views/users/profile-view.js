@@ -1,26 +1,23 @@
 import UserModel from '../../models/user-model';
 
 let html = `
-<h2>
-  <% if(name) { %>
-    <%- name %>
+  <h2>
+  <% if(full_name) { %>
+    <%- full_name %>
   <% } else {%>
     Anonymous
   <% } %>
   </h2>
-  <p><%- username %></p>
+  <p><%- user_name %></p>
   <button type="button">Follow</button>
-`;
+`
 
 let ProfileView = Backbone.View.extend({
   template: _.template(html),
   className: 'users',
 
   render() {
-    this.$el.html(this.template({
-      profile: this.model.toJSON(),
-      friend: UserModel.toJSON()
-    }));
+    this.$el.html(this.template(this.model.toJSON()));
     return this;
   }
 });

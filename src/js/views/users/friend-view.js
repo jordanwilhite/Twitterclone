@@ -1,19 +1,24 @@
-import Router from '../../routers/router'
+import Friend from '../../models/friend-model';
+import Router from '../../routers/router';
 import ProfileView from './profile-view';
 
+let html = `
+  <div class="users-list">
+    <h1>Friends</h1>
+  </div>
+`;
 let FriendView = Backbone.View.extend({
-  template: _.template(`<h1>Friends</h1>`),
-  className: 'user-list',
+  template: _.template(html),
 
   render: function() {
     this.$el.html(this.template());
 
-    this.collection.each(function(friend) {
+    this.collection.each((users) => {
       var view = new ProfileView({
-        model: friend
+        model: users
       })
-      this.$el.append(view.render().el);
-    }, this);
+      this.$('.users-list').append(view.render().el);
+    });
 
     return this;
   }

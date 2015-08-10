@@ -18,7 +18,8 @@ let Router = Backbone.Router.extend({
     'users/signin': 'signin',
     'users/signup': 'signup',
     'users/listUsers': 'listFriends',
-    'feed': 'feed'
+    'feed': 'feed',
+    'feed/new': 'new'
   },
 
   initialize: function() {
@@ -73,12 +74,17 @@ let Router = Backbone.Router.extend({
     var collection = new Friends();
 
     var view = new FriendView({
-      collection: collection
+      collection: collection,
+      model: UserModel
     });
 
     collection.fetch({
       success(){
         AppView.setContent(view.render().el);
+      },
+
+      error(){
+        alert('Error getting users.');
       }
     });
   }
