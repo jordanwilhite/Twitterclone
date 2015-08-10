@@ -9,7 +9,6 @@ let TweetsCollection = BaseCollection.extend({
     if (response.data) {
       return response.data;
     }
-
     return response;
   }
 });

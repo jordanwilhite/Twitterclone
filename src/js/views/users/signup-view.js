@@ -20,19 +20,26 @@ let SignupView = Backbone.View.extend({
   },
 
   onSubmit(e) {
-    var name = this.$('#name').val();
-    var email = this.$('#email').val();
-    var password = this.$('#password').val();
-    var passwordConfirmation = this.$('#password-confirm').val();
-    var username = this.$('#username').val();
+    let name = this.$('#name').val();
+    let email = this.$('#email').val();
+    let password = this.$('#password').val();
+    let passwordConfirmation = this.$('#password-confirm').val();
+    let username = this.$('#username').val();
 
+
+    // if the passwords match create a new instance of User &
+    // set it's values on the object
     if (name && email && password && passwordConfirmation && username && (password === passwordConfirmation)) {
+
+      // Save the user to the server via the api
       this.model.signup({
         name: name,
         email: email,
         password: password,
         username: username
       });
+    } else {
+      alert('Your passwords do not match. Try again.');
     }
     e.preventDefault();
   },

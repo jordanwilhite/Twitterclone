@@ -1,66 +1,37 @@
-import BaseModel from './base';
+import BaseModel from './base-model';
 
 let TweetModel = BaseModel.extend({
+  url: 'https://twitterfeeder.herokuapp.com/messages',
   defaults: {
     createdAt: () => new Date(),
     postedAt: '',
-    body: '',
+    body: ''
   },
 
-  parse: function (response) {
+  parse(response) {
+    if (response.data) {
+      return {
+        user: response.data.attributes.user_id,
+        body: response.data.attributes.body,
+        id: response.id
+      }
+    }
+
     return {
       body: response.attributes.body,
-      id: response.id
+      user: response.attributes.user_id
     }
+  },
+
+  sync(method, model, options) {
+    if (model && (method == 'create' || method == 'update')) {
+      options.attrs = {
+        tweet: model.toJSON()
+      };
+    }
+
+    Backbone.sync.call(this, method, model, options);
   }
 });
 
-// import TweetsCollection from '../collections/tweets';
-// import Router from '../routers/router';
-//
-// let TweetModel = Backbone.Model.extend({
-//   defaults: {
-//     createdAt: '',
-//     postedAt: '',
-//     tweet: ''
-//   },
-//
-//   parse: function(response) {
-//     var data = {
-//       user: response.user_id,
-//       body: response.attributes.body,
-//       id: response.id,
-//       body: response.attributes.body,
-//       tweetId: response.tweetId
-//     }
-//   },
-//
-//   tweet: function(tweets) {
-//     $ajax ({
-//       type: "POST",
-//       url: "https://twitterfeeder.herokuapp.com",
-//       dataType: "json",
-//       success: function(data){
-//         _.done(this.postSuccess.bind(this))
-//         .fail(this.postFail.bind(this));
-//       }
-//     });
-//   },
-//
-//   postSuccess: function(data){
-//     var data = {
-//       createdAt: '',
-//       postedAt: '',
-//       body: '',
-//       tweetId: ''
-//     };
-//
-//     this.set({
-//       createdAt: data.createdAt,
-//       postedAt: data.postedAt,
-//       body: data.body
-//     });
-//   }
-// });
-
-  export default TweetModel;
+export default TweetModel;

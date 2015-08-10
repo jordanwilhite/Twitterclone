@@ -70,6 +70,7 @@ body{
       @include span-columns(8);
       @import "partials/login";
       @import "partials/signup";
+      @import "partials/user-list";
       padding: 10px 0 0 0;
 
       .tweets{

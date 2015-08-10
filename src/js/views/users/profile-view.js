@@ -1,20 +1,25 @@
 import UserModel from '../../models/user-model';
 
 let html = `
-<img src="http://lorempixel.com/72/72/cats/" alt="Profile Picture"/>
-<a href="#"><h1><% name %></h1></a>
-<a href="#"><h2><% user_name %></h2></a>
-<button type="button">Follow</button>
+<h2>
+  <% if(name) { %>
+    <%- name %>
+  <% } else {%>
+    Anonymous
+  <% } %>
+  </h2>
+  <p><%- username %></p>
+  <button type="button">Follow</button>
 `;
 
 let ProfileView = Backbone.View.extend({
   template: _.template(html),
-  className: 'profile-card',
+  className: 'users',
 
   render() {
     this.$el.html(this.template({
       profile: this.model.toJSON(),
-      UserModel: UserModel.toJSON()
+      friend: UserModel.toJSON()
     }));
     return this;
   }

@@ -1,6 +1,6 @@
-import BaseModel from './base';
+import BaseModel from './base-model';
 
-let FriendModel = BaseModel.extend({
+let FriendModel = Backbone.Model.extend({
   defaults: {
     fullname: '',
     username: ''
@@ -10,13 +10,25 @@ let FriendModel = BaseModel.extend({
     return response.attributes;
   },
 
-  follow() {
-
+  listFriends: function(data) {
+    $.ajax({
+      method: 'GET',
+      url: 'https://twitterfeeder.herokuapp.com/users',
+      dataType: 'json',
+      data: {
+        user: {
+          username: data.attributes.user_name,
+          fullname: data.attributes.full_name
+        }
+      }
+    }).done(this.listUsersSuccess.bind(this))
+    .fail(this.listUsersFail.bind(this));
   },
 
-  unfollow() {
-
+  listFriendsSuccess: function(response) {
+    console.log('listUsers fail', errorThrown);
   }
+  
 });
 
 export default FriendModel;
