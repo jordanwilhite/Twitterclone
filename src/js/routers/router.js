@@ -18,8 +18,7 @@ let Router = Backbone.Router.extend({
     'users/signin': 'signin',
     'users/signup': 'signup',
     'users/listUsers': 'listFriends',
-
-    // feed: feed,
+    'feed': 'feed',
     'feed/new': 'new'
   },
 

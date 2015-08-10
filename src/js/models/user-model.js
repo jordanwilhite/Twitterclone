@@ -51,35 +51,25 @@ let UserModel = Backbone.Model.extend({
   },
 
   signin: function(credentials) {
-    if (this.get('credentials')) {
-      this.set('credentials', {});
-    }
+    $.ajax('https://twitterfeeder.herokuapp.com/oauth/token', {
+      method: 'POST',
+      data: {
+        email: credentials.email,
+        password: credentials.password,
 
-    if (credentials) {
-      this.set({
-        email: credentials.email
-      });
-      $.ajax({
-        method: 'POST',
-        url: 'https://twitterfeeder.herokuapp.com/oauth/token',
-        dataType: 'json',
-        data: {
-          email: credentials.email,
-          password: credentials.password,
+        // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+        grant_type: 'password'
 
-          // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
-          grant_type: 'password'
-
-          // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
-        }
-      }).done(this.signinSuccess.bind(this))
-        .fail(this.signinFail.bind(this));
-    }
+        // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
+      }
+    }).done(this.signinSuccess.bind(this))
+      .fail(this.signinFail.bind(this));
   },
 
   signinSuccess: function(response) {
     if (response) {
       this.set({
+        email: response.email,
 
         // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
         accessToken: response.access_token,
@@ -90,15 +80,13 @@ let UserModel = Backbone.Model.extend({
         // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 
       });
-
-      this.save();
     }
 
     this.refreshAuth();
 
     this.trigger('signin', {
       success: true,
-      user: data
+      user: this
     });
   },
 
