@@ -59,7 +59,8 @@ let Router = Backbone.Router.extend({
     var collection = new Friends();
 
     var view = new FriendView({
-      collection: collection
+      collection: collection,
+      model: UserModel
     });
 
     collection.fetch({

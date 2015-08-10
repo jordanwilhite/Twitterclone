@@ -8,8 +8,12 @@ let SignupView = Backbone.View.extend({
     'click button': 'onSubmit'
   },
 
+  initialize: function() {
+    this.listenTo(this.model, 'signup', this.onSignup);
+  },
+
   onSubmit: function(e) {
-    let name = this.$('#name').val();
+    let name = this.$('#fullname').val();
     let email = this.$('#email').val();
     let password = this.$('#password').val();
     let passwordConfirm = this.$('#password-confirm').val();
@@ -24,7 +28,7 @@ let SignupView = Backbone.View.extend({
         email: email,
         password: password,
         username: username,
-        name: name
+        name: fullname
       });
 
     } else {
@@ -32,6 +36,15 @@ let SignupView = Backbone.View.extend({
     }
 
     e.preventDefault();
+  },
+
+  onSignup: function(data) {
+    if (data.success) {
+      Router.navigate('users/listUsers', {trigger: true});
+    } else {
+      console.log(data);
+      alert('There was a problem registering. Please try again.\n' + data.error);
+    }
   },
 
   render: function() {

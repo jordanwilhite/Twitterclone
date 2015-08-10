@@ -17,9 +17,13 @@ let FriendModel = Backbone.Model.extend({
       url: 'https://twitterfeeder.herokuapp.com/users',
       dataType: 'json',
       data: {
-        user: {
+        friend: {
+
+          //jscs:disable requireCamelCaseOrUpperCaseIdentifiers
           username: data.attributes.user_name,
           fullname: data.attributes.full_name
+
+          //jscs:enable requireCamelCaseOrUpperCaseIdentifiers
         }
       }
     }).done(this.listUsersSuccess.bind(this))

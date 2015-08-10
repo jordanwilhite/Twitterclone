@@ -7,11 +7,7 @@ let Friends = Backbone.Collection.extend({
   model: FriendModel,
 
   parse: function(response) {
-    if (response.data) {
-      return response.data;
-    } else {
-      return response;
-    }
+    return response.data;
   }
 });
 

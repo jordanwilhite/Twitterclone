@@ -7,7 +7,7 @@ let UserModel = Backbone.Model.extend({
   defaults: {
     email: '',
     username: '',
-    name: '',
+    fullname: '',
     accessToken: null,
     user: 0,
     tokenType: null,
@@ -35,6 +35,21 @@ let UserModel = Backbone.Model.extend({
     return !!this.get('accessToken');
   },
 
+  users: function() {
+    $.ajax('http://tiy-twitter.herokuapp.com/users', {
+      method: 'GET',
+      data: {
+
+        //jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+        name: attributes.full_name,
+        username: attributes.user_name
+
+        //jscs:enable requireCamelCaseOrUpperCaseIdentifiers
+
+      }
+    })
+  },
+
   signin: function(credentials) {
     if (this.get('credentials')) {
       this.set('credentials', {});
@@ -51,7 +66,11 @@ let UserModel = Backbone.Model.extend({
         data: {
           email: credentials.email,
           password: credentials.password,
+
+          // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
           grant_type: 'password'
+
+          // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
         }
       }).done(this.signinSuccess.bind(this))
         .fail(this.signinFail.bind(this));
@@ -61,11 +80,16 @@ let UserModel = Backbone.Model.extend({
   signinSuccess: function(response) {
     if (response) {
       this.set({
-      accessToken: response.access_token,
-      refreshToken: response.refresh_token,
-      tokenType: response.token_type,
-      expiresIn: response.expires_in
-    });
+
+        // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+        accessToken: response.access_token,
+        refreshToken: response.refresh_token,
+        tokenType: response.token_type,
+        expiresIn: response.expires_in
+
+        // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+
+      });
 
       this.save();
     }
@@ -95,10 +119,14 @@ let UserModel = Backbone.Model.extend({
       dataType: 'json',
       data: {
         user: {
+
+          //jscs:disable requireCamelCaseOrUpperCaseIdentifiers
           email: credentials.email,
           password: credentials.password,
           name: credentials.full_name,
           username: credentials.user_name
+
+          //jscs:disable requireCamelCaseOrUpperCaseIdentifiers
         }
       }
     }).done(this.signupSuccess.bind(this))
