@@ -45,7 +45,7 @@ let Router = Backbone.Router.extend({
       success() {
         AppView.setContent(view.render().el);
         AppView.setSidebar(newTweet.render().el);
-        $('.sidebar').show();
+        $('.sidebar').show('slow');
       }
     });
   },
