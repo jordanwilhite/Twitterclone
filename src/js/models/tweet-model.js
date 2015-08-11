@@ -11,9 +11,12 @@ let TweetModel = BaseModel.extend({
   parse(response) {
     if (response.data) {
       return {
+
         //jscs:disable requireCamelCaseOrUpperCaseIdentifiers
         user: response.data.attributes.user_id,
+        
         //jscs:enable requireCamelCaseOrUpperCaseIdentifiers
+
         body: response.data.attributes.body,
         id: response.id
       }
@@ -21,7 +24,11 @@ let TweetModel = BaseModel.extend({
 
     return {
       body: response.attributes.body,
+
+      //jscs:disable requireCamelCaseOrUpperCaseIdentifiers
       user: response.attributes.user_id
+
+      //jscs:enable requireCamelCaseOrUpperCaseIdentifiers
     }
   },
 

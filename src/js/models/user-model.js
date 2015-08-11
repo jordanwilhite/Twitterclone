@@ -112,6 +112,7 @@ let UserModel = Backbone.Model.extend({
             password: credentials.password,
             full_name: credentials.name,
             user_name: credentials.username
+
             //jscs:disable requireCamelCaseOrUpperCaseIdentifiers
           }
         }

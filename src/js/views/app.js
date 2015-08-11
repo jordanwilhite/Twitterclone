@@ -9,8 +9,10 @@ let AppView = Backbone.View.extend({
     this.views = {
       header: new HeaderView(),
       sidebar: new SidebarView(),
-      content: new ContentView(),
+      content: new ContentView()
+
       // footer: new FooterView()
+
     };
   },
 
