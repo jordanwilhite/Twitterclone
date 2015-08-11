@@ -14,7 +14,7 @@ let html = `
 
 let SignupView = Backbone.View.extend({
   template: _.template(html),
-  className: "sign-up",
+  className: 'sign-up',
   events: {
     'click #register': 'onSubmit'
   },
@@ -25,7 +25,6 @@ let SignupView = Backbone.View.extend({
     let password = this.$('#password').val();
     let passwordConfirmation = this.$('#password-confirm').val();
     let username = this.$('#username').val();
-
 
     // if the passwords match create a new instance of User &
     // set it's values on the object
@@ -41,12 +40,13 @@ let SignupView = Backbone.View.extend({
     } else {
       alert('Your passwords do not match. Try again.');
     }
+
     e.preventDefault();
   },
 
   onSignup(data) {
-    if(data.success) {
-      Router.navigate('users/listUsers', {trigger: true});
+    if (data.success) {
+      ('users/listUsers', {trigger: true});
     } else {
       console.log(data);
       alert('There was a problem registering. Please try again.\n' + data.error);

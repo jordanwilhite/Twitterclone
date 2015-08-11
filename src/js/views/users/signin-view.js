@@ -16,7 +16,7 @@ let html = `
 
 let SigninView = Backbone.View.extend({
   template: _.template(html),
-  className: "sign-in",
+  className: 'sign-in',
 
   events: {
     'click .submit-input': 'onSubmit'
@@ -42,6 +42,7 @@ let SigninView = Backbone.View.extend({
 
     e.preventDefault();
   }
+
 });
 
 export default SigninView;

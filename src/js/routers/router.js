@@ -42,7 +42,7 @@ let Router = Backbone.Router.extend({
     });
 
     collection.fetch({
-      success(){
+      success() {
         AppView.setContent(view.render().el);
         AppView.setSidebar(newTweet.render().el);
         $('.sidebar').show();
@@ -82,12 +82,12 @@ let Router = Backbone.Router.extend({
     });
 
     collection.fetch({
-      success(){
+      success() {
         AppView.setContent(view.render().el);
         $('.sidebar').hide();
       },
 
-      error(){
+      error() {
         alert('Error getting users.');
       }
     });
