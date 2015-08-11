@@ -33,7 +33,7 @@ let SignupView = Backbone.View.extend({
 
       // Save the user to the server via the api
       this.model.signup({
-        name: fullname,
+        name: name,
         email: email,
         password: password,
         username: username
@@ -52,7 +52,7 @@ let SignupView = Backbone.View.extend({
       alert('There was a problem registering. Please try again.\n' + data.error);
     }
   },
-  
+
   render() {
     this.$el.html(this.template(this.model.toJSON()));
     return this;

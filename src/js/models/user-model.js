@@ -106,12 +106,12 @@ let UserModel = Backbone.Model.extend({
         url: 'https://twitterfeeder.herokuapp.com/users',
         dataType: 'json',
         data: {
-          user: {            
+          user: {
             //jscs:disable requireCamelCaseOrUpperCaseIdentifiers
             email: credentials.email,
             password: credentials.password,
-            name: credentials.full_name,
-            username: credentials.user_name
+            full_name: credentials.name,
+            user_name: credentials.username
             //jscs:disable requireCamelCaseOrUpperCaseIdentifiers
           }
         }
