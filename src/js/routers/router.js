@@ -1,18 +1,18 @@
-// Models
 import UserModel from '../models/user-model';
 
 // Views
-import TweetView from '../views/tweet-view';
-import FriendView from '../views/friend-view';
-import SigninView from '../views/signin-view';
-import SignupView from '../views/signup-view';
+import AppView from '../views/app';
+import TweetView from '../views/feed/tweet-view';
+import FriendView from '../views/users/friend-view';
+import SigninView from '../views/users/signin-view';
+import SignupView from '../views/users/signup-view';
+import FeedListView from '../views/feed/list';
 
 // Collections
 import TweetsCollection from '../collections/tweets';
 import Friends from '../collections/friends.js';
 
 let Router = Backbone.Router.extend({
-
   routes: {
     '': 'signup',
     'users/signin': 'signin',
@@ -30,12 +30,28 @@ let Router = Backbone.Router.extend({
     });
   },
 
-  signin: function() {
+  feed() {
+    var collection = new TweetsCollection();
+
+    var view = new FeedListView({
+      collection: collection
+    });
+
+    var newTweet = new TweetView({
+      collection: collection
+    });
+
+    collection.fetch({
+      success(){
+        AppView.setContent(view.render().el);
+        AppView.setSidebar(newTweet.render().el);
+      }
+    });
+  },
+
+  signin() {
     if (UserModel.isLoggedIn()) {
-      this.navigate('feed', {
-        trigger: true,
-        replace: true
-      });
+      this.navigate('feed', {trigger: true, replace: true});
       return false;
     }
 
@@ -43,18 +59,18 @@ let Router = Backbone.Router.extend({
       model: UserModel
     });
 
-    $('#primary').html(view.render().el);
+    AppView.setContent(view.render().el);
   },
 
-  signup: function() {
+  signup() {
     var view = new SignupView({
       model: UserModel
     });
 
-    $('#primary').html(view.render().el);
+    AppView.setContent(view.render().el);
   },
 
-  listFriends: function() {
+  listFriends() {
     var collection = new Friends();
 
     var view = new FriendView({
@@ -63,42 +79,15 @@ let Router = Backbone.Router.extend({
     });
 
     collection.fetch({
-      success: function() {
-        $('#primary').html(view.render().el);
+      success(){
+        AppView.setContent(view.render().el);
       },
 
-      error: function() {
+      error(){
         alert('Error getting users.');
       }
     });
-  },
-
-  feed: function() {
-    var collection = new TweetsCollection();
-    var view = new TweetView({
-      collection: collection,
-      model: TweetModel
-    });
-
-    collection.fetch({
-      success: function() {
-        $('.twitter-feed').html(view.render().el);
-      },
-
-      error: function() {
-        alert('Error getting tweets.');
-      }
-    });
-  },
-
-  new: function() {
-    var view = new SigninView({
-    model: UserModel
-  });
-
-    $('#primary').html(view.render().el);
   }
-
 });
 
 export default new Router();

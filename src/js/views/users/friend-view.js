@@ -1,5 +1,5 @@
-import Friend from '../models/friend-model';
-import Router from '../routers/router';
+import Friend from '../../models/friend-model';
+import Router from '../../routers/router';
 import ProfileView from './profile-view';
 
 let html = `

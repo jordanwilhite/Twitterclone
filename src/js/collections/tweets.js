@@ -1,17 +1,15 @@
-import TweetModel from '../models/tweet-model';
 import BaseCollection from './base';
+import TweetModel from '../models/tweet-model';
 
-let TweetsCollection = Backbone.Collection.extend({
+let TweetsCollection = BaseCollection.extend({
   url: 'https://twitterfeeder.herokuapp.com/messages',
-
   model: TweetModel,
 
   parse: function(response) {
     if (response.data) {
       return response.data;
-    } else {
-      return response;
     }
+    return response;
   }
 });
 

@@ -1,7 +1,6 @@
 import BaseModel from './base-model';
 
 let UserModel = Backbone.Model.extend({
-
   url: 'https://twitterfeeder.herokuapp.com/users',
 
   defaults: {
@@ -26,10 +25,10 @@ let UserModel = Backbone.Model.extend({
   },
 
   refreshAuth() {
-    _.delay(() => {
-      alert('token expired...time to fetch a new one');
-    }, this.get('expiresIn') * 1000);
-  },
+  _.delay(() => {
+    alert('token expired...time to fetch a new one');
+  }, this.get('expiresIn') * 1000);
+},
 
   isLoggedIn() {
     return !!this.get('accessToken');
@@ -101,24 +100,24 @@ let UserModel = Backbone.Model.extend({
   },
 
   signup: function(credentials) {
-    $.ajax({
-      method: 'POST',
-      url: 'https://twitterfeeder.herokuapp.com/users',
-      dataType: 'json',
-      data: {
-        user: {
-
-          //jscs:disable requireCamelCaseOrUpperCaseIdentifiers
-          email: credentials.email,
-          password: credentials.password,
-          name: credentials.full_name,
-          username: credentials.user_name
-
-          //jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+    if (credentials) {
+      $.ajax({
+        method: 'POST',
+        url: 'https://twitterfeeder.herokuapp.com/users',
+        dataType: 'json',
+        data: {
+          user: {            
+            //jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+            email: credentials.email,
+            password: credentials.password,
+            name: credentials.full_name,
+            username: credentials.user_name
+            //jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+          }
         }
-      }
-    }).done(this.signupSuccess.bind(this))
-      .fail(this.signupFail.bind(this));
+      }).done(this.signupSuccess.bind(this))
+        .fail(this.signupFail.bind(this));
+    }
   },
 
   signupSuccess: function(data) {

@@ -6,9 +6,8 @@ let FriendModel = Backbone.Model.extend({
     username: ''
   },
 
-  parse: function(response) {
-    var data = response.attributes;
-    return data;
+  parse(response) {
+    return response.attributes;
   },
 
   listFriends: function(data) {
@@ -31,13 +30,9 @@ let FriendModel = Backbone.Model.extend({
   },
 
   listFriendsSuccess: function(response) {
-    console.log('success!', data);
-  },
-
-  listFriendsFail: function(xhr, textStatus, errorThrown) {
     console.log('listUsers fail', errorThrown);
   }
-
+  
 });
 
 export default FriendModel;

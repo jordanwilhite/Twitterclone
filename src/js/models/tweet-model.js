@@ -1,50 +1,38 @@
 import BaseModel from './base-model';
 
-let TweetModel = Backbone.Model.extend({
+let TweetModel = BaseModel.extend({
+  url: 'https://twitterfeeder.herokuapp.com/messages',
   defaults: {
-    createdAt: '',
+    createdAt: () => new Date(),
     postedAt: '',
     body: ''
   },
 
-  parse: function(response) {
-    var data = {
+  parse(response) {
+    if (response.data) {
+      return {
+        //jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+        user: response.data.attributes.user_id,
+        //jscs:enable requireCamelCaseOrUpperCaseIdentifiers
+        body: response.data.attributes.body,
+        id: response.id
+      }
+    }
 
-      //jscs:disable requireCamelCaseOrUpperCaseIdentifiers
-      user: response.user_id,
-
-      //jscs:enable requireCamelCaseOrUpperCaseIdentifiers
+    return {
       body: response.attributes.body,
-      id: response.id,
-      tweetId: response.tweetId
+      user: response.attributes.user_id
     }
   },
 
-  tweet: function(tweets) {
-    $ajax ({
-      type: 'POST',
-      url: 'https://twitterfeeder.herokuapp.com/messages',
-      dataType: 'json',
-      success: function(data) {
-        _.done(this.postSuccess.bind(this))
-        .fail(this.postFail.bind(this));
-      }
-    });
-  },
+  sync(method, model, options) {
+    if (model && (method == 'create' || method == 'update')) {
+      options.attrs = {
+        tweet: model.toJSON()
+      };
+    }
 
-  postSuccess: function(data) {
-    var data = {
-      createdAt: '',
-      postedAt: '',
-      body: '',
-      tweetId: ''
-    };
-
-    this.set({
-      createdAt: data.createdAt,
-      postedAt: data.postedAt,
-      body: data.body
-    });
+    Backbone.sync.call(this, method, model, options);
   }
 });
 
