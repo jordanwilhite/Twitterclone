@@ -32,7 +32,7 @@ let FriendModel = Backbone.Model.extend({
   listFriendsSuccess: function(response) {
     console.log('listUsers fail', errorThrown);
   }
-  
+
 });
 
 export default FriendModel;
