@@ -45,6 +45,7 @@ let Router = Backbone.Router.extend({
       success(){
         AppView.setContent(view.render().el);
         AppView.setSidebar(newTweet.render().el);
+        $('.sidebar').show();
       }
     });
   },
@@ -60,6 +61,7 @@ let Router = Backbone.Router.extend({
     });
 
     AppView.setContent(view.render().el);
+    $('.sidebar').hide();
   },
 
   signup() {
@@ -68,6 +70,7 @@ let Router = Backbone.Router.extend({
     });
 
     AppView.setContent(view.render().el);
+    $('.sidebar').hide();
   },
 
   listFriends() {
@@ -81,6 +84,7 @@ let Router = Backbone.Router.extend({
     collection.fetch({
       success(){
         AppView.setContent(view.render().el);
+        $('.sidebar').hide();
       },
 
       error(){
